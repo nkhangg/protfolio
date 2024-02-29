@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Sansita+Swashed&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: 'Kanit', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #0d1018;
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #0d1018;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #161b22;
+}

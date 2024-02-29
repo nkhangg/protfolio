@@ -1,30 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <div class="bg-primary">
+        <Header />
+        <router-view />
+
+        <Footer v-if="currentRouteName && !['home', 'login'].includes(currentRouteName as string)  " />
+
+        <div v-if="auth.currentUser" class="fixed bottom-0 right-0 text-primary p-9">
+            <router-link :to="{ name: 'create' }"
+                ><button class="border border-primary rounded-full w-12 h-12 text-sm active:scale-95"><fa :icon="['fas', 'plus']" /></button
+            ></router-link>
+        </div>
+    </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script setup lang="ts">
+import { computed } from 'vue';
+import Header from './components/common/Header.vue';
+import Footer from './components/common/Footer.vue';
+import { useRoute } from 'vue-router';
+import { auth } from './config/firebase';
+const route = useRoute();
+const currentRouteName = computed(() => route.name);
+</script>
